@@ -1,4 +1,4 @@
-import React from "react"
+import React , {useEffect, useState}from "react"
 
 /**
  * {
@@ -14,11 +14,12 @@ import React from "react"
 
 export default function Vans() {
     const [vans, setVans] = React.useState([])
-    React.useEffect(() => {
+
+    useEffect(()=>{
         fetch("/api/vans")
-            .then(res => res.json())
-            .then(data => setVans(data.vans))
-    }, [])
+        .then(res=>res.json())
+        .then(data=>setVans(data.vans))
+    },[])
 
     const vanElements = vans.map(van => (
         <div key={van.id} className="van-tile">
